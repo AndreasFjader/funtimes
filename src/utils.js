@@ -1,13 +1,13 @@
-function manipulateInput(input) {
-  const inputIsNumerical = Number(input);
-  if (typeof inputIsNumerical === Number) {
-    return inputIsNumerical;
+function removeStringQuotes(input) {
+  if (startsAndEndsWithQuotes(input)) {
+    return input.slice(1, -1);
   }
 
-  // It's possible that the selected text was already wrapped in ''.
-  // Make sure '' are removed from numerical inputs, and excess '' are removed for strings.
-  
-
+  return input;
 }
 
-module.exports = { manipulateInput };
+function startsAndEndsWithQuotes(input) {
+  return (input.startsWith("'") && input.endsWith("'")) || (input.startsWith('"') && input.endsWith('"'));
+}
+
+module.exports = { removeStringQuotes };
