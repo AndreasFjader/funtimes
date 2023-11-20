@@ -1,9 +1,12 @@
 # Change Log
 
-All notable changes to the "funtimes" extension will be documented in this file.
+## [0.1.0] - 2023-11-20
+First version for the testing phase.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### Added
+- Handler for converting datetime string to UTC via direct key combination.
+- Handler for converting datetime string to local timezone direct key combination.
+- Handler for converting datetime string to epoch direct key combination.
 
 ## [Unreleased]
-
-- Initial release
+Nothing yet.

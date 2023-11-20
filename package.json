@@ -1,8 +1,8 @@
 {
   "name": "funtimes",
-  "displayName": "FunTimes",
-  "description": "",
-  "version": "0.0.1",
+  "displayName": "Fun Times",
+  "description": "Convert datetime strings directly in your editor in an easy and fun way.",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.84.0"
   },
