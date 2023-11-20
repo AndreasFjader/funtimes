@@ -1,6 +1,11 @@
+/**
+ * Removes '' or "" from an input.
+ * @param {string} input
+ * @returns a new string not surrounded by '' or "".
+ */
 function removeStringQuotes(input) {
   if (startsAndEndsWithQuotes(input)) {
-    return input.slice(1, -1);
+    return removeStringQuotes(input.slice(1, -1));
   }
 
   return input;

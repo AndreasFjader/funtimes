@@ -10,15 +10,30 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.showDialog"
+    "onCommand:extension.convertWithOption",
+    "onCommand:extension.convertToEpoch",
+    "onCommand:extension.convertToUtc",
+    "onCommand:extension.convertToLocal"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [],
     "keybindings": [
       {
-        "command": "extension.showDialog",
+        "command": "extension.convertWithOption",
         "key": "ctrl+shift+,"
+      },
+      {
+        "command": "extension.convertToEpoch",
+        "key": "ctrl+alt+I"
+      },
+      {
+        "command": "extension.convertToUtc",
+        "key": "ctrl+alt+U"
+      },
+      {
+        "command": "extension.convertToLocal",
+        "key": "ctrl+alt+L"
       }
     ]
   },

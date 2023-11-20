@@ -1,10 +1,9 @@
 const vscode = require('vscode');
 const { DateTime } = require('luxon');
-
 const { removeStringQuotes } = require('./utils.js');
 const { validDateTimeStringFormats, conversionOptions } = require('./config.js');
 
-async function convertDateTimeToFormat() {
+async function convertDateTimeToFormatWithSelection(conversionOption = undefined) {
   const editor = vscode.window.activeTextEditor;
 	const selection = editor.selection;
 	const selectedText = editor.document.getText(selection);
@@ -16,7 +15,7 @@ async function convertDateTimeToFormat() {
   }
 
   const options = Object.values(conversionOptions);
-  const chosenOption = await vscode.window.showQuickPick(options);
+  const chosenOption = conversionOption ? conversionOption : await vscode.window.showQuickPick(options);
 
   if (!chosenOption) {
     return;
@@ -38,6 +37,11 @@ async function convertDateTimeToFormat() {
 
 }
 
+/**
+ * Converts the datetime string into a datetime object.
+ * @param {string} input the datetime string.
+ * @returns the created datetime object.
+ */
 function generateDateTimeFromInput(input) {
   // Remove excess string quotes here.
   const epoch = Number(input);
@@ -47,6 +51,11 @@ function generateDateTimeFromInput(input) {
   return generateDateTimeFromStringInput(input);
 }
 
+/**
+ * Converts the datetime string into a datetime object, if the input is not an epoch value.
+ * @param {string} input a datetime string.
+ * @returns the created datetime object.
+ */
 function generateDateTimeFromStringInput(input) {
   // DateTime.fromFormat cannot validate if it's an ISO string. Must be done via fromISO.
   const strippedInput = removeStringQuotes(input);
@@ -65,6 +74,12 @@ function generateDateTimeFromStringInput(input) {
   return dt;
 }
 
+/**
+ * Convers the datetime object into a desired format, for example Epoch, ISO, etc.
+ * @param {DateTime} dateTime the Luxon datetime object.
+ * @param {object} convertOption the object from which the user has selected what time format the dateTime should be converted into.
+ * @returns the converted datetime.
+ */
 function convertToDesiredFormat(dateTime, convertOption) {
   switch(convertOption) {
     case conversionOptions.epoch:
@@ -82,5 +97,5 @@ function convertToDesiredFormat(dateTime, convertOption) {
 }
 
 module.exports = {
-  convertDateTimeToFormat,
+  convertDateTimeToFormatWithSelection,  
 }
